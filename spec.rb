@@ -21,24 +21,20 @@ class Person
   end
 
   def full_name 
-    middle_name = "#{@middle_name} " unless @middle_name.nil?
-    return "#{@first_name} #{middle_name}#{@last_name}"
+    [@first_name, @middle_name, @last_name].reject(&:nil?).join(" ")
+
   end
   # implement your behavior here
   def full_name_with_middle_initial
-    middle = "#{initial(@middle_name)} " unless @middle_name.nil?
-    return "#{@first_name} #{middle}#{@last_name}"
+    return [@first_name, @last_name].join(" ") if @middle_name.nil?
+    [@first_name, @middle_name[0] + ".", @last_name].reject(&:nil?).join(" ")
   end
 
   def initials
-    middle = "#{initial(@middle_name)}" unless @middle_name.nil?
-    return "#{initial(@first_name)}#{middle}#{initial(@last_name)}"
-
+    return [@first_name[0], @last_name[0]].join(".")+ "." if @middle_name.nil? 
+    [@first_name[0], @middle_name[0], @last_name[0]].reject(&:nil?).join(".") + "."
   end
   
-  def initial(name)
-    "#{name[0]}."
-  end
 end
 
 RSpec.describe Person do
