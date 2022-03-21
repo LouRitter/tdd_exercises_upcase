@@ -45,8 +45,7 @@ RSpec.describe Person do
     end
     it "does not add extra spaces if middle name is missing" do 
       p = Person.new(first_name: "Lou", last_name: "Ritter")
-      expect(p.full_name).to eq("Lou Ritter")
-    
+      expect(p.full_name).to eq("Lou Ritter")   
     end
   end
 
